@@ -19,12 +19,12 @@ const TabNavigator = ({ navigation }) => {
           if (route.name === 'HomePage') {
             iconName += 'home-outline';
           } else if (route.name === 'HoodPage') {
-            iconName += 'home-outline';
+            iconName += 'aperture-outline';
           } else if (route.name === 'ChatPage') {
-            iconName += 'home-outline';
+            iconName += 'chatbubbles-outline';
             // 채팅 수 표현 방법
           } else if (route.name === 'MyPage') {
-            iconName += 'home-outline';
+            iconName += 'person-outline';
           } 
           return (
             <Ionicons
