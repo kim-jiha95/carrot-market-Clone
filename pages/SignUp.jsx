@@ -1,10 +1,11 @@
+  
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-export default function Mypage() {
+export default function SignUp() {
   return (
     <View style={styles.container}>
-      <Text>caroot Homepage!</Text>
+      <Text>Sigin Up!</Text>
     </View>
   );
 }

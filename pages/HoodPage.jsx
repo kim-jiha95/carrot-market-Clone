@@ -1,49 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
-import { Container, Content } from 'native-base';
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 
-import HeaderComponent from '../components/HeaderComponent';
-import CardComponent from '../components/CardComponent';
-import Loading from './Loading';
-// import { getData } from '../config/firebaseFunctions';
-
-export default function HoodPage({ navigation }) {
-  const [state, setState] = useState([]);
-  const [ready, setReady] = useState(true);
-
-  useEffect(() => {
-    const unsubscrbie = navigation.addListener('focus', (e) => {
-      console.log('후드페이지 접속중');
-    });
-    download();
-    return unsubscrbie;
-  }, [navigation]);
-
-  const download = async () => {
-    console.log('업로드 준비중!');
-
-    const result = await getData();
-
-    // console.log(result);
-
-    setState(result);
-    setReady(false);
-  };
-
-  return ready ? (
-    <Loading />
-  ) : (
-    <Container>
-      <HeaderComponent />
-      <Content>
-        {state.map((content, i) => {
-          return (
-            <CardComponent content={content} key={i} navigation={navigation} />
-          );
-        })}
-      </Content>
-    </Container>
+export default function Mypage() {
+  return (
+    <View style={styles.container}>
+      <Text>caroot Hoodpage!</Text>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

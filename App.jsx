@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import StackNavigator from './navigations/StackNavigator';
+import TabNavigator from './navigations/TabNavigator';
 
 export default function App() {
   return (

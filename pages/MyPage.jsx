@@ -1,22 +1,18 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Image,
-  View,
-  Dimensions,
-  ActivityIndicator,
-} from 'react-native';
-import { Col, Row, Grid } from 'react-native-easy-grid';
-import {
-  Container,
-  Header,
-  Content,
-  Left,
-  Icon,
-  Right,
-  Text,
-  Button,
-  Thumbnail,
-} from 'native-base';
+import { StyleSheet, View, Text } from 'react-native';
 
-export default function MyPage({ navigation })
+export default function Mypage() {
+  return (
+    <View style={styles.container}>
+      <Text>caroot mypage!</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
