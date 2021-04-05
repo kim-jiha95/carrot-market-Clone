@@ -19,7 +19,7 @@ const categoryData = [
     {
         id: 1,
         name: "동네사진전",
-        // icon: icons.rice_bowl,
+        icon: icons.town,
     },
     {
         id: 2,
@@ -29,7 +29,7 @@ const categoryData = [
     {
         id: 3,
         name: "일상",
-        // icon: icons.hotdog,
+        icon: icons.hotdog,
     },
     {
         id: 4,
@@ -64,7 +64,7 @@ const categoryData = [
     {
         id: 10,
         name: "고양이",
-        // icon: icons.drink,
+        icon: icons.cat,
     },
 
 ]

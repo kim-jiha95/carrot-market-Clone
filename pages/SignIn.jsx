@@ -1,19 +1,10 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { View, Text, Button } from 'native-base';
+import { StyleSheet, View, Text } from 'react-native';
 
-export default function SignIn({ navigation }) {
+export default function SignInPage() {
   return (
     <View style={styles.container}>
-      <Text>Sigin In!</Text>
-      <Button
-        style={styles.button}
-        onPress={() => {
-          navigation.navigate('SignUp');
-        }}
-      >
-        <Text>회원가입</Text>
-      </Button>
+      <Text>caroot ChatPage!</Text>
     </View>
   );
 }
@@ -21,10 +12,7 @@ export default function SignIn({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center',
-  },
-  button: {
-    alignSelf: 'center',
   },
 });
