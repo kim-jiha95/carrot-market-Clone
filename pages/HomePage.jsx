@@ -1,18 +1,21 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text,Image } from 'react-native';
 
 export default function Mypage() {
   return (
-    <View style={styles.container}>
-      <Text>caroot Homepage!</Text>
+    <View >
+      <Image style ={styles.pencil}         
+         source={require("../assets/Pencil.png")}
+/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  pencil:{
+    marginTop: 680,
+    marginLeft: 310,
+    width: 50,
+    height: 50,
+  }
 });
