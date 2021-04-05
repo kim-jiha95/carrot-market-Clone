@@ -24,7 +24,7 @@ const categoryData = [
     {
         id: 2,
         name: "우리동네질문",
-        // icon: icons.noodle,
+        icon: icons.like,
     },
     {
         id: 3,
@@ -34,32 +34,32 @@ const categoryData = [
     {
         id: 4,
         name: "동네소식",
-        // icon: icons.salad,
+        icon: icons.salad,
     },
     {
         id: 5,
         name: "동네맛집",
-        // icon: icons.hamburger,
+        icon: icons.hamburger,
     },
     {
         id: 6,
         name: "분실/실종센터",
-        // icon: icons.pizza,
+        icon: icons.pizza,
     },
     {
         id: 7,
         name: "동네사건사고",
-        // icon: icons.fries,
+        icon: icons.fries,
     },
     {
         id: 8,
         name: "해주세요",
-        // icon: icons.sushi,
+        icon: icons.sushi,
     },
     {
         id: 9,
         name: "취미생활",
-        // icon: icons.donut,
+        icon: icons.donut,
     },
     {
         id: 10,
@@ -79,9 +79,9 @@ const restaurantData = [
         id: 1,
         name: "오늘 날씨가 너무 좋네요 아차산에 가려고 하는데 같이 가실 분 없나요?",
         rating: 4.8,
-        categories: [5, 7],
+        categories: [1],
         // priceRating: affordable,
-        photo: images.mountain,
+        photo: images.avatar-1,
         // duration: "30 - 45 min",
         location: {
             latitude: 1.5347282806345879,
@@ -122,14 +122,14 @@ const restaurantData = [
         id: 2,
         name: "곧 돌이 되는 남자아이를 키우는 사람입니다",
         rating: 4.8,
-        categories: [2, 4, 6],
+        categories: [2],
         // priceRating: expensive,
-        photo: images.child,
+        photo: images.board,
         // duration: "15 - 20 min",
-        location: {
-            latitude: 1.556306570595712,
-            longitude: 110.35504616746915,
-        },
+        // location: {
+        //     latitude: 1.556306570595712,
+        //     longitude: 110.35504616746915,
+        // },
         // courier: {
         //     avatar: images.avatar_2,
         //     name: "Jackson"
@@ -176,11 +176,11 @@ const restaurantData = [
         categories: [3],
         // priceRating: expensive,
         photo: images.golf,
-        duration: "20 - 25 min",
-        location: {
-            latitude: 1.5238753474714375,
-            longitude: 110.34261833833622,
-        },
+        // duration: "20 - 25 min",
+        // location: {
+        //     latitude: 1.5238753474714375,
+        //     longitude: 110.34261833833622,
+        // },
         // courier: {
         //     avatar: images.avatar_3,
         //     name: "James"
@@ -204,14 +204,14 @@ const restaurantData = [
         // priceRating: expensive,
         photo: images.dog,
         // duration: "10 - 15 min",
-        location: {
-            latitude: 1.5578068150528928,
-            longitude: 110.35482523764315,
-        },
-        courier: {
-            avatar: images.avatar_4,
-            name: "Ahmad"
-        },
+        // location: {
+        //     latitude: 1.5578068150528928,
+        //     longitude: 110.35482523764315,
+        // },
+        // courier: {
+        //     avatar: images.avatar_4,
+        //     name: "Ahmad"
+        // },
         menu: [
             {
                 menuId: 9,
@@ -227,9 +227,9 @@ const restaurantData = [
         id: 5,
         name: "석촌호수에서 찍은 벚꽃사진입니다!",
         // rating: 4.8,
-        categories: [1, 2],
+        categories: [1],
         // priceRating: affordable,
-        photo: images.flower,
+        photo: images.avatar-2,
         // duration: "15 - 20 min",
         location: {
             latitude: 1.558050496260768,
@@ -280,7 +280,7 @@ const restaurantData = [
         id: 6,
         name: "간밤에 주말 비가 안와서 취미생활 즐겨 봅니다! 올림픽 공원에서 보드 타는게 너무 재밌어요 같이 타실분?!",
         // rating: 4.9,
-        categories: [9, 10],
+        categories: [9],
         // priceRating: affordable,
         photo: images.board,
         // duration: "35 - 40 min",
