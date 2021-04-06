@@ -1,13 +1,54 @@
-import React from 'react';
-import { StyleSheet, View, Text,Image } from 'react-native';
+import React, {useState, useEffect }from 'react';
+import { StyleSheet, ScrollView, View, Text,Image, Dimensions } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import HeaderComponent from '../components/HeaderComponent';
+const diviceWidth = Dimensions.get('window').width;
+import { Container, Tab, Tabs } from 'native-base';
+import HomeComponent from '../components/HomeComponent';
+import data from '../data.json';
 
-export default function HomePage() {
+
+export default function HomePage( {navigation}) {
+console.disableYellowBox = true;
+
+const [categories, setCategories] = useState(data.result);
+
+useEffect(() => {
+    download();
+},[]);
+
+  const download = async () => {
+    const result = await getData();
+
+    setCategories(result);
+  }
+
   return (
-    <View >
-      <Image style ={styles.pencil}         
-         source={require("../assets/Pencil.png")}
-/>
-    </View>
+    <Container>
+      <HeaderComponent headerTitle = 'Home' />
+      <Ionicons 
+      style={styles.headerIcons1}
+      name={'search-outline'}
+      color={'grey'}
+      size={25}
+      />
+      <ScrollView>
+        {categories.map((category, i) =>{
+          return (
+            <HomeComponent
+            category = {category}
+            key = {i}
+            navigation={navigation}
+            />
+          );
+        })}
+      </ScrollView>
+    </Container>
+//     <View >
+//       <Image style ={styles.pencil}         
+//          source={require("../assets/Pencil.png")}
+// />
+//     </View>
   );
 }
 
@@ -17,5 +58,10 @@ const styles = StyleSheet.create({
     marginLeft: 310,
     width: 50,
     height: 50,
-  }
+  },
+  headerIcons1: {
+    position: 'absolute',
+    top:60,
+    left:360,
+  },
 });

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         paddingTop: 95,
         paddingBottom: 5,
         marginLeft: 20,
-        bakgroundColor: 'white',
+        // bakgroundColor: 'white',
         
 
     },
