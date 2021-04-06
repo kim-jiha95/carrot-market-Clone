@@ -19,8 +19,8 @@ useEffect(() => {
 },[]);
 
   const download = async () => {
-    const result = await get();
-
+    const result = await getCateData();
+      
     setCategories(result);
   }
 
