@@ -32,6 +32,17 @@ useEffect(() => {
       color={'grey'}
       size={25}
       />
+      <Ionicons 
+      style={styles.headerIcons2}
+      name={'apps-outline'}
+      color={'grey'}
+      size={25}
+      /><Ionicons 
+      style={styles.headerIcons3}
+      name={'ear-outline'}
+      color={'grey'}
+      size={25}
+      />
       <ScrollView>
         {categories.map((category, i) =>{
           return (
@@ -61,7 +72,16 @@ const styles = StyleSheet.create({
   },
   headerIcons1: {
     position: 'absolute',
-    top:60,
-    left:360,
+    top:45,
+    left:270,
+  },
+  headerIcons2: {
+    position: 'absolute',
+    top:45,
+    left: 300,
+  }, headerIcons3: {
+    position: 'absolute',
+    top:45,
+    left:330,
   },
 });

@@ -21,12 +21,12 @@ export default function HomeComponent({ navigation, category }) {
           <Image
             style={styles.sellImage}
             resizeMode='cover'
-            source={{ uri: category.img_url }}
+            source={{ uri: category.images }}
           />
         </Col>
         <Col size={2} style={styles.cardText}>
           <Text style={styles.sellTitle}>{category.name}</Text>
-          <Text style={styles.sellEnTitle}>{category.eng_name}</Text>
+          <Text style={styles.sellEnTitle}>{category.contents}</Text>
         </Col>
       </Grid>
     </TouchableOpacity>
@@ -42,11 +42,12 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     flex: 1,
     alignItems: 'center',
+    marginTop: 70,
   },
   sellImage: {
     height: 100,
     width: 100,
-    borderRadius: 100,
+    borderRadius: 30,
   },
   sellTitle: {
     fontSize: 19,
