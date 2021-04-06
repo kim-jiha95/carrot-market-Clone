@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     },
     headerText:{
         fontWeight: '600',
-        fontSize: 30,        
+        fontSize: 30, 
+        marginTop: 50,       
     },
 })

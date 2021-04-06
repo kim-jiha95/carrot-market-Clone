@@ -39,7 +39,7 @@ useEffect(() => {
       size={25}
       /><Ionicons 
       style={styles.headerIcons3}
-      name={'ear-outline'}
+      name={'notifications-outline'}
       color={'grey'}
       size={25}
       />
