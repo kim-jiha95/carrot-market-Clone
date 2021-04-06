@@ -3,37 +3,36 @@ import { StyleSheet } from 'react-native';
 
 import { createStackNavigator} from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 import StackNavigator from './navigations/StackNavigator';
 
-// const Stack = createStackNavigator();
 import TabNavigator from './navigations/TabNavigator';
-// import "React-native-gesture-handler";
-// import {HomePage, HoodPage, ChatPage, MyPage} from '../pages'
+
 import HoodPage from "./pages/HoodPage";
 import HomePage from "./pages/HomePage";
 import ChatPage from "./pages/ChatPage";
 import MyPage from "./pages/MyPage";
 
+const Stack = createStackNavigator();
+
 
 export default function App() {
+      const[loaded] = useFonts({
+      "Roboto-Black" : require('./assets/fonts/Roboto-Black.ttf'),
+      "Roboto-Bold" : require('./assets/fonts/Roboto-Bold.ttf'),
+      "Roboto-Regular" : require('./assets/fonts/Roboto-Regular.ttf'),
+
+    })
+    
+    if(!loaded){
+      return null;
+    }
+
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-    <StackNavigator />
-  </NavigationContainer>
-    // <NavigationContainer>
-    //   <Stack.Navigator 
-    //     screenOptions={{
-    //       headerShown: false
-    //     }}
-    //     initialRouteName={"Home"}
-    //     >
-    //       <Stack.Screen name ="HomePage" component={HomePage}/>
-    //       <Stack.Screen name ="HoodPage" component={HoodPage}/>
-    //       <Stack.Screen name ="ChatPage" component={ChatPage}/>
-    //       <Stack.Screen name ="MyPage" component={MyPage}/>
-    //       </Stack.Navigator>         
-    // </NavigationContainer>
+    <StackNavigator/>       
+   </NavigationContainer>    
   );
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text,Image } from 'react-native';
 
-export default function Mypage() {
+export default function HomePage() {
   return (
     <View >
       <Image style ={styles.pencil}         
