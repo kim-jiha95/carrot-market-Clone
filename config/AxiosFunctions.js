@@ -27,8 +27,8 @@
 //       //자바스크립트 함수의 실행순서를 고정하기 위해 쓰는 async,await
 //       await Location.requestPermissionsAsync();
 //       const locationData= await Location.getCurrentPositionAsync();
-//       const latitude = locationData['coords']['latitude']
-//       const longitude = locationData['coords']['longitude']
+//        const latitude = locationData['coords']['latitude']
+//        const longitude = locationData['coords']['longitude']
 //       const API_KEY = "cfc258c75e1da2149c33daffd07a911d";
 //       const result = await axios.get(
 //         `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`

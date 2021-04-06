@@ -6,6 +6,7 @@ const diviceWidth = Dimensions.get('window').width;
 import { Container, Tab, Tabs } from 'native-base';
 import HomeComponent from '../components/HomeComponent';
 import data from '../data.json';
+import {getCateData} from '../config/BackData'
 
 
 export default function HomePage( {navigation}) {
@@ -18,7 +19,7 @@ useEffect(() => {
 },[]);
 
   const download = async () => {
-    const result = await getData();
+    const result = await get();
 
     setCategories(result);
   }
