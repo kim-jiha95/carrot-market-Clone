@@ -14,19 +14,19 @@ export default function HomeComponent({ navigation, category }) {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('DetailPage', category.name);
+        navigation.navigate('DetailPage', category.nickname);
       }}>
       <Grid style={styles.resell}>
         <Col size={1}>
           <Image
             style={styles.sellImage}
             resizeMode='cover'
-            source={{ uri: category.images }}
+            source={{ uri: category.images[0] }}
           />
         </Col>
         <Col size={2} style={styles.cardText}>
-          <Text style={styles.sellTitle}>{category.name}</Text>
-          <Text style={styles.sellEnTitle}>{category.contents}</Text>
+          <Text style={styles.sellTitle}>{category.nickname}</Text>
+          <Text style={styles.sellEnTitle}>{category.date}</Text>
         </Col>
       </Grid>
     </TouchableOpacity>
