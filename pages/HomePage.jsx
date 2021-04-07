@@ -74,7 +74,7 @@ useEffect(() => {
             />
           );
         })}
-        <TouchableOpacity style ={styles.pencilSize} onPress={() => navigation.navigate('HomeAddPage')}>
+        <TouchableOpacity style ={styles.pencilSize} onPress={() => navigation.navigate('HomeAddPage')}>          
       <Image 
       resizeMode={'contain'}
       style ={styles.pencil}         

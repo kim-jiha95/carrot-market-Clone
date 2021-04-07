@@ -3,6 +3,7 @@ import { StyleSheet, Image,Platform, Alert, View, Text } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
 import { Grid } from 'react-native-easy-grid';
+import { secondhandpost } from '../config/BackData';
 import {
   Container,
   Header,
@@ -20,7 +21,80 @@ import {
 import HomeAddComponent from '../components/HomeAddComponent';
 
 
-export default function HomeAddPage() {
+export default function HomeAddPage({navigation}) {
+
+  const [title, setTitle] = useState('');
+  const [contents, setContents] = useState('');
+  const [price, setPrice] = useState('');
+  const [date, setDate] = useState('');
+
+  const goHomePage = () => {
+    navigation.navigate('HomePage');
+  };
+
+  const setTitleFunc = (itemInputTitle) => {
+    setTitle(itemInputTitle);
+  };
+  const setConetentsFunc = (itemInputContents) => {
+    setContents(itemInputContents);
+  };
+  const setPriceFunc = (itemInputPrice) => {
+    setPrice(itemInputPrice);
+  };
+  const setDateFunc = (itemInputDate) => {
+    setDate(itemInputDate);
+  };
+  
+  // useEffect(() => {
+  //   const unsubscrbie = navigation.addListener('focus', (e) => {
+  //     console.log('작성페이지 접속중');
+  //   });
+  //   getPermission();
+  //   return unsubscrbie;
+  // }, [navigation]);
+  // const getPermission = async () => {
+  //   if (Platform.OS !== 'web') {
+  //     const {
+  //       status,
+  //     } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+  //     if (status !== 'granted') {
+  //       Alert.alert('게시글을 업로드하려면 사진첩 권한이 필요합니다.');
+  //     }
+  //   }
+  // };
+  // const upload = async () => {
+  //   console.log('업로드 준비중!');
+  //   setProgress(true);
+  // }
+
+  //   const days = ['일', '월', '화', '수', '목', '금', '토'];
+  //   let date = new Date();
+
+  //   let year = date.getFullYear() + '년 ';
+  //   let month = date.getMonth() + 1 + '월 ';
+  //   let date1 = date.getDate() + '일 ';
+  //   let day = days[date.getDay()] + '요일 ';
+  //   let hour = date.getHours() + '시 ';
+  //   let min = date.getMinutes() + '분';
+  //   let time = date.getTime();
+
+  //   let data = {
+  //     key: time,
+  //     title: title,
+  //     desc: content,
+  //     image: image,
+  //     date: year + month + date1 + day + hour + min,
+  //   };
+  //   const response = await fetch(imageURI);
+  //   const blob = await response.blob();
+  //   const imageURL = await imageUpload(blob, time);
+
+  //   data.image = imageURL;
+  //   console.log(data);
+
+  //   let result = await addDiary(data);
+  // }
+
   return (
     
       <Container>
@@ -42,20 +116,25 @@ export default function HomeAddPage() {
           <Input
             placeholder="글 제목"
             style={{ fontSize: 13 }}
-            onChangeText={(text) => setTitle(text)}
+            setFunc={setTitleFunc}
+            // onChangeText={(text) => setTitle(text)}
           />
         </Item>
         <Item regular style={styles.category}>
-          <Input
+          
+          
+          
+          {/* <Input
             placeholder="카테고리 선택"
-            style={{ fontSize: 13 }}
+            style={{ fontSize: 13 }}            
             onChangeText={(text) => setTitle(text)}
-          />
+          /> */}
         </Item><Item regular style={styles.category}>
           <Input
             placeholder="가격 입력(선택사항)                               or 가격제안 받기"
             style={{ fontSize: 13 }}
-            onChangeText={(text) => setTitle(text)}
+            setFunc={setPriceFunc}
+            // onChangeText={(text) => setPrice(text)}
           />
         </Item>
         <Form style={styles.contentLayout}>
@@ -64,12 +143,13 @@ export default function HomeAddPage() {
             bordered
             placeholder="동네에 올릴 게시글 내용을 작성해주세요. (가품 및 판매금지 품목은 게시가 제한될 수 있어요.)"
             style={styles.content}
-            onChangeText={(text) => setContent(text)}
+            setFunc={setConetentsFunc}
+            // onChangeText={(text) => setContent(text)}
           />
         </Form>
-        {/* <Button full style={styles.uploadButton} onPress={() => upload()}>
+        <Button full style={styles.uploadButton} onPress={() => (secondhandpost)}>
           <Text>등록</Text>
-        </Button> */}
+        </Button>
       </Content>
         </Container>
     );
@@ -131,10 +211,10 @@ const styles = StyleSheet.create({
     height: 300
   },
   content: { borderRadius: 10, fontSize: 13 },
-  // uploadButton: {
-  //   width: '90%',
-  //   alignSelf: 'center',
-  //   marginTop: 10,
-  //   backgroundColor: 'pink',
-  // },
+  uploadButton: {
+    width: '90%',
+    alignSelf: 'center',
+    marginTop: 10,
+    backgroundColor: 'pink',
+  },
 });
