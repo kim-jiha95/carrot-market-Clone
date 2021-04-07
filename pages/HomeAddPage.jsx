@@ -4,13 +4,12 @@ import * as ImagePicker from 'expo-image-picker';
 import { Grid } from 'react-native-easy-grid';
 import {
   Container,
-  Header,
+  // Header,
   Content,
   Left,
   Icon,
   Text,
   Right,
-  Text,
   Button,
   Thumbnail,
   Item,
@@ -18,9 +17,7 @@ import {
   Form,
   Textarea,
 } from 'native-base';
-const imageWidth = Dimensions.get('window').width / 3;
-
-import ImagePicker from 'react-native-image-picker';
+// const imageWidth = Dimensions.get('window').width / 3;
 
 import HomeAddComponent from '../components/HomeAddComponent';
 
@@ -31,7 +28,7 @@ export default function HomeAddPage() {
   const [content, setContent] = useState('');
   const [contentError, setContentError] = useState('');
 
-  const [image, setImage] = useState(tempImage);
+  // const [image, setImage] = useState(tempImage);
   useEffect(() => {
     getPermission();
   }, []);
@@ -74,12 +71,12 @@ export default function HomeAddPage() {
       {/* <View style={styles.container}> */}
         <HomeAddComponent headerTitle="중고거래 글 쓰기" />
         <Content>
-        <Ionicons
+        {/* <Ionicons
           style={styles.headerIcons}
           name={"settings-outline"}
           color={"grey"}
           size={20}
-        />
+        /> */}
         {/* </View> */}
         <Grid style={styles.imageUpload}>
           <Text style={styles.imageUploadPlus}>+</Text>

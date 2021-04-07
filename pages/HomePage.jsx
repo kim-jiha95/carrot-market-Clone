@@ -1,18 +1,29 @@
 import React, {useState, useEffect }from 'react';
-import { StyleSheet, ScrollView, View, Text,Image, Dimensions } from 'react-native';
+import { StyleSheet, ScrollView, View, Text,Image, Dimensions, TouchableOpacity,Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderComponent from '../components/HeaderComponent';
-const diviceWidth = Dimensions.get('window').width;
+// import HomeAddPage from './HomeAddPage'
+
 import { Container, Tab, Tabs } from 'native-base';
 import HomeComponent from '../components/HomeComponent';
 import data from '../data.json';
 import {getCateData} from '../config/BackData'
+// import { useNavigation} from '@react-navigation/native';
+// const navigation = useNavigation();
+const diviceWidth = Dimensions.get('window').width;
+// import { useRoutes, usePath, A} from 'hookrouter';
 
+// const routes = {
+//   'HomeAddPage/': () => <HomeAddPage/>
+// }
 
 export default function HomePage( {navigation}) {
 console.disableYellowBox = true;
 
 const [categories, setCategories] = useState(data.result);
+// const routeResult = useRoutes(routes);
+
+// return routeResult || <NotFoundPage />;
 
 useEffect(() => {
     download();
@@ -25,9 +36,10 @@ useEffect(() => {
   }
 
   return (
-    <Container>
+    <Container       style={styles.container}
+    >
       <HeaderComponent headerTitle = 'Home' />
-      <Ionicons 
+      <Ionicons onPress={() => Alert.alert("성공")}
       style={styles.headerIcons1}
       name={'search-outline'}
       color={'grey'}
@@ -44,6 +56,14 @@ useEffect(() => {
       color={'grey'}
       size={25}
       />
+      {/* <TouchableOpacity style ={styles.pencilSize} onPress={() => navigation.navigate('HomeAddPage')}>
+      <Image 
+      resizeMode={'contain'}
+      style ={styles.pencil}         
+         source={require("../assets/Pencil.png")}         
+/>
+      </TouchableOpacity> */}
+      <View>
       <ScrollView>
         {categories.map((category, i) =>{
           return (
@@ -54,22 +74,42 @@ useEffect(() => {
             />
           );
         })}
-      </ScrollView>
+        <TouchableOpacity style ={styles.pencilSize} onPress={() => navigation.navigate('HomeAddPage')}>
+      <Image 
+      resizeMode={'contain'}
+      style ={styles.pencil}         
+         source={require("../assets/Pencil.png")}         
+/>
+      </TouchableOpacity>
+      </ScrollView>  
+      </View>    
+      
+      {/* <Image style ={styles.pencil}         
+         source={require("../assets/Pencil.png")}
+/> */}
+    
     </Container>
-//     <View >
-//       <Image style ={styles.pencil}         
-//          source={require("../assets/Pencil.png")}
-// />
-//     </View>
+    
   );
 }
 
 const styles = StyleSheet.create({
-  pencil:{
-    marginTop: 680,
-    marginLeft: 310,
+  container:{
+  },
+  pencilSize:{    
     width: 50,
-    height: 50,
+    height: 50,   
+    position: 'absolute',marginTop: 650,
+    marginLeft: 300,
+
+  },
+
+  pencil:{
+    // position: 'absolute',
+    // marginTop: 650,
+    // marginLeft: 300,
+    width: '100%',
+    height: '100%',
   },
   headerIcons1: {
     position: 'absolute',
