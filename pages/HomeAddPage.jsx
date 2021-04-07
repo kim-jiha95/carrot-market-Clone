@@ -29,8 +29,9 @@ export default function HomeAddPage({navigation}) {
 
   
   const upload = async () => {
+    console.log(title, contents, price)
 
-    secondhandpost(title, contents, price );
+    secondhandpost(title, contents, price);
   };
 
   const goHomePage = () => {
@@ -149,7 +150,7 @@ export default function HomeAddPage({navigation}) {
             onChangeText={(text) => setContents(text)}
           />
         </Form>
-        <Button full style={styles.uploadButton} onPress={() => (upload)}>
+        <Button full style={styles.uploadButton} onPress={upload()}>
           <Text>등록</Text>
         </Button>
       </Content>
