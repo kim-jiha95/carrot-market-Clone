@@ -26,24 +26,26 @@ export default function HomeAddPage({navigation}) {
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
   const [price, setPrice] = useState('');
-  const [date, setDate] = useState('');
+
+  
+  const upload = async () => {
+
+    secondhandpost(title, contents, price );
+  };
 
   const goHomePage = () => {
     navigation.navigate('HomePage');
   };
 
-  const setTitleFunc = (itemInputTitle) => {
-    setTitle(itemInputTitle);
+  
+  const doHomePageAdd = () => {
+    //Email 로그인 버튼을 누를 때 실행
+    //관리 상태 값 확인
+    // console.log(title);
+    // console.log(contents);
+    // console.log(price);
   };
-  const setConetentsFunc = (itemInputContents) => {
-    setContents(itemInputContents);
-  };
-  const setPriceFunc = (itemInputPrice) => {
-    setPrice(itemInputPrice);
-  };
-  const setDateFunc = (itemInputDate) => {
-    setDate(itemInputDate);
-  };
+
   
   // useEffect(() => {
   //   const unsubscrbie = navigation.addListener('focus', (e) => {
@@ -115,9 +117,9 @@ export default function HomeAddPage({navigation}) {
         <Item regular style={styles.title}>
           <Input
             placeholder="글 제목"
+            value={title}
             style={{ fontSize: 13 }}
-            setFunc={setTitleFunc}
-            // onChangeText={(text) => setTitle(text)}
+            onChangeText={(text) => setTitle(text)}
           />
         </Item>
         <Item regular style={styles.category}>
@@ -129,12 +131,13 @@ export default function HomeAddPage({navigation}) {
             style={{ fontSize: 13 }}            
             onChangeText={(text) => setTitle(text)}
           /> */}
-        </Item><Item regular style={styles.category}>
+        </Item>
+        <Item regular style={styles.category}>
           <Input
-            placeholder="가격 입력(선택사항)                               or 가격제안 받기"
+            placeholder="가격 입력(선택사항)" 
+            value={price}                              
             style={{ fontSize: 13 }}
-            setFunc={setPriceFunc}
-            // onChangeText={(text) => setPrice(text)}
+            onChangeText={(text) => setPrice(text)}
           />
         </Item>
         <Form style={styles.contentLayout}>
@@ -143,11 +146,10 @@ export default function HomeAddPage({navigation}) {
             bordered
             placeholder="동네에 올릴 게시글 내용을 작성해주세요. (가품 및 판매금지 품목은 게시가 제한될 수 있어요.)"
             style={styles.content}
-            setFunc={setConetentsFunc}
-            // onChangeText={(text) => setContent(text)}
+            onChangeText={(text) => setContents(text)}
           />
         </Form>
-        <Button full style={styles.uploadButton} onPress={() => (secondhandpost)}>
+        <Button full style={styles.uploadButton} onPress={() => (upload)}>
           <Text>등록</Text>
         </Button>
       </Content>
