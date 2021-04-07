@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Image, Platform, Alert } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { StyleSheet, Image,Platform, Alert, View, Text } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { Ionicons } from '@expo/vector-icons';
 import { Grid } from 'react-native-easy-grid';
 import {
   Container,
-  // Header,
+  Header,
   Content,
   Left,
   Icon,
-  Text,
   Right,
   Button,
   Thumbnail,
@@ -17,59 +17,15 @@ import {
   Form,
   Textarea,
 } from 'native-base';
-// const imageWidth = Dimensions.get('window').width / 3;
-
 import HomeAddComponent from '../components/HomeAddComponent';
 
+
 export default function HomeAddPage() {
-  const [title, setTitle] = useState('');
-  const [titleError, setTitleError] = useState('');
-
-  const [content, setContent] = useState('');
-  const [contentError, setContentError] = useState('');
-
-  // const [image, setImage] = useState(tempImage);
-  useEffect(() => {
-    getPermission();
-  }, []);
-
-  const getPermission = async () => {
-    if (Platform.OS !== 'web') {
-      const {
-        status,
-      } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== 'granted') {
-        alert('게시글을 업로드하려면 사진첩 권한이 필요합니다.');
-      }
-    }
-  };
-
-  const upload = async () => {
-    console.log('업로드 준비중!');
-    const currentUser = firebase.auth().currentUser;
-    // 서버 변경 필요
-    let date = new Date();
-    let data = {
-      title: title,
-      author: currentUser.email,
-      desc: content,
-      image: image,
-      date: date.getTime(),
-      uid: currentUser.uid,
-    };
-
-    let result = addDiary(data);
-    if (result) {
-      Alert('글이 성공적으로 등록되었습니다!');
-    }
-  };
-
-
-
-    return (
+  return (
+    
       <Container>
       {/* <View style={styles.container}> */}
-        <HomeAddComponent headerTitle="중고거래 글 쓰기" />
+        {/* <HomeAddComponent headerTitle="중고거래 글 쓰기" />  */}
         <Content>
         {/* <Ionicons
           style={styles.headerIcons}
@@ -79,52 +35,90 @@ export default function HomeAddPage() {
         /> */}
         {/* </View> */}
         <Grid style={styles.imageUpload}>
-          <Text style={styles.imageUploadPlus}>+</Text>
+          <Ionicons style = {styles.camera} name ={'camera-outline'} color={'grey'} size = {25} ></Ionicons>
+          {/* <Text style={styles.imageUploadPlus}>+</Text> */}
         </Grid>
         <Item regular style={styles.title}>
           <Input
-            placeholder="다이어리 제목을 입력해주세요!"
+            placeholder="글 제목"
+            style={{ fontSize: 13 }}
+            onChangeText={(text) => setTitle(text)}
+          />
+        </Item>
+        <Item regular style={styles.category}>
+          <Input
+            placeholder="카테고리 선택"
+            style={{ fontSize: 13 }}
+            onChangeText={(text) => setTitle(text)}
+          />
+        </Item><Item regular style={styles.category}>
+          <Input
+            placeholder="가격 입력(선택사항)                               or 가격제안 받기"
             style={{ fontSize: 13 }}
             onChangeText={(text) => setTitle(text)}
           />
         </Item>
         <Form style={styles.contentLayout}>
           <Textarea
-            rowSpan={5}
+            rowSpan={17}
             bordered
-            placeholder="내용을 입력해주세요"
+            placeholder="동네에 올릴 게시글 내용을 작성해주세요. (가품 및 판매금지 품목은 게시가 제한될 수 있어요.)"
             style={styles.content}
             onChangeText={(text) => setContent(text)}
           />
         </Form>
-        <Button full style={styles.uploadButton} onPress={() => upload()}>
+        {/* <Button full style={styles.uploadButton} onPress={() => upload()}>
           <Text>등록</Text>
-        </Button>
+        </Button> */}
       </Content>
         </Container>
     );
 }
 
+    // <View style={styles.container}>
+    //   <Text>caroot ChatPage!</Text>
+    // </View>
+  
+
 const styles = StyleSheet.create({
+  // container: {
+  //   flex: 1,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
   imageUpload: {
     borderWidth: 2,
     borderRadius: 10,
     borderColor: 'grey',
     borderStyle: 'dashed',
-    width: '90%',
-    height: 200,
-    marginTop: 20,
-    alignSelf: 'center',
-    alignItems: 'center',
+    width: '20%',
+    // height: 50,
+    marginTop: 40,
+    // alignSelf: 'center',
+    // alignItems: 'center',
+    // maginLeft: 300,
   },
-  imageUploadPlus: {
+  camera:{
     textAlign: 'center',
     width: '100%',
-    fontSize: 90,
+    fontSize: 40,
     fontWeight: '300',
     color: 'grey',
   },
+  // imageUploadPlus: {
+  //   textAlign: 'center',
+  //   width: '100%',
+  //   fontSize: 40,
+  //   fontWeight: '300',
+  //   color: 'grey',
+  // },
   title: {
+    width: '90%',
+    alignSelf: 'center',
+    marginTop: 10,
+    borderRadius: 10,
+  },
+  category: {
     width: '90%',
     alignSelf: 'center',
     marginTop: 10,
@@ -134,15 +128,13 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
     marginTop: 10,
+    height: 300
   },
   content: { borderRadius: 10, fontSize: 13 },
-  uploadButton: {
-    width: '90%',
-    alignSelf: 'center',
-    marginTop: 10,
-    backgroundColor: 'pink',
-  },
+  // uploadButton: {
+  //   width: '90%',
+  //   alignSelf: 'center',
+  //   marginTop: 10,
+  //   backgroundColor: 'pink',
+  // },
 });
-
-// ui작업중
-
