@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import HomePage from '../pages/HomePage';
 import HoodPage from '../pages/HoodPage';
+import NearmePage from '../pages/NearmePage';
 import ChatPage from '../pages/ChatPage';
 import MyPage from '../pages/MyPage';
 import React from 'react';
@@ -16,14 +17,16 @@ const TabNavigator = ({ navigation }) => {
         tabBarIcon: ({ focused }) => {
           let iconName = Platform.OS === 'ios' ? 'ios-' : 'md-';
           
-          if (route.name === 'HomePage') {
+          if (route.name === '홈') {
             iconName += 'home-outline';
-          } else if (route.name === 'HoodPage') {
-            iconName += 'aperture-outline';
-          } else if (route.name === 'ChatPage') {
+          } else if (route.name === '동네생활') {
+            iconName += 'newspaper-outline';
+           } else if (route.name === "내 근처") {
+              iconName += "pin-outline";            
+          } else if (route.name === '채팅') {
             iconName += 'chatbubbles-outline';
             // 채팅 수 표현 방법
-          } else if (route.name === 'MyPage') {
+          } else if (route.name === '나의 당근') {
             iconName += 'person-outline';
           } 
           return (
@@ -41,19 +44,25 @@ const TabNavigator = ({ navigation }) => {
         },
       })}
       tabBarOptions={{
-        showLabel: false,
+        showLabel: true,
         style: {
           backgroundColor: '#fff',
-          borderTopColor: '#eee',
+          borderTopColor: '#ff7f00',
           height: 70,
           fontSize: 10,
         },
+        activeTintColor: "#ff7f00",
+        style: {
+          backgroundColor: "#fff",
+          borderTopColor: "#eee",
+        },
       }}
     >
-      <Tabs.Screen name="HomePage" component={HomePage} />
-      <Tabs.Screen name="HoodPage" component={HoodPage} />
-      <Tabs.Screen name="ChatPage" component={ChatPage} />
-      <Tabs.Screen name="MyPage" component={MyPage} />
+      <Tabs.Screen name="홈" component={HomePage} />
+      <Tabs.Screen name="동네생활" component={HoodPage} />
+      <Tabs.Screen name="내 근처" component={NearmePage} />
+      <Tabs.Screen name="채팅" component={ChatPage} />
+      <Tabs.Screen name="나의 당근" component={MyPage} />
     </Tabs.Navigator>
   );
 };

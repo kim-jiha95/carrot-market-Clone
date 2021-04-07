@@ -1,11 +1,12 @@
 import React from 'react';
 //설치한 스택 네비게이션 라이브러리를 가져옵니다
 import { createStackNavigator } from '@react-navigation/stack';
+import HomeAddPage from '../pages/HomeAddPage';
 
 //페이지로 만든 컴포넌트들을 불러옵니다
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
-import Home_Detail from '../pages/Home_Detail';
+// import SignIn from '../pages/SignIn';
+// import SignUp from '../pages/SignUp';
+// import Home_Detail from '../pages/Home_Detail';
 
 import TabNavigator from './TabNavigator';
 
@@ -27,9 +28,10 @@ const StackNavigator = () => {
       {/* 컴포넌트를 페이지로 만들어주는 엘리먼트에 끼워 넣습니다. 이 자체로 이제 페이지 기능을 합니다*/}
 
       <Stack.Screen name="TabNavigator" component={TabNavigator} />
-      <Stack.Screen name="SignIn" component={SignIn} />
+      <Stack.Screen name="HomeAddPage" component={HomeAddPage}/>
+      {/* <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
-      <Stack.Screen name="Home_Detail" component={Home_Detail} />
+      <Stack.Screen name="Home_Detail" component={Home_Detail} /> */}
     </Stack.Navigator>
   );
 };
