@@ -1,34 +1,53 @@
-import React, { useState } from 'react';
-import { StyleSheet, ImageBackground } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, ImageBackground, AsyncStorage } from 'react-native';
 import ItemInput from '../components/ItemInput';
+import { login } from '../config/AxiosFunctions'
 import {
   Container,
   Content,
+  Thumbnail,
   Text,
   Form,
   Button,
 } from 'native-base';
+import Loading from '../components/Loading';
 const bImage = require('../assets/background.png');
+const Main = require('../assets/Main.png')
 
 export default function SignIn({ navigation }) {
 
-  
-  const [email, setEmail] = useState('');
+  const [ready, setReady] = useState(false);
+
+  const [id, setid] = useState('');
   const [password, setPassword] = useState('');
 
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const goSignUp = () => {
-    navigation.navigate('SignUp');
-  };
+  useEffect(() => {
+    navigation.addListener('beforeRemove', (e) => {
+      e.preventDefault();
+    });
+
+    setTimeout(() => {
+			AsyncStorage.getItem('session', (err, result) => {
+      console.log('ASYNCSTORAGE');
+      console.log(result);
+      if (result) {
+        navigation.push('TabNavigator');
+      } else {
+        setReady(true);
+      }
+    });
+      setReady(true);
+    }, 1000);
+    
+  }, []);
 
   const doSignIn = () => {
-    //Email 로그인 버튼을 누를 때 실행
-    //관리 상태 값 확인
-    console.log(email);
+    console.log(id);
     console.log(password);
-    if (email == '') {
+    if (id == '') {
       setEmailError('이메일을 입력해주세요');
     } else {
       setEmailError('');
@@ -39,28 +58,32 @@ export default function SignIn({ navigation }) {
     } else {
       setPasswordError('');
     }
-    // signIn(email, password, navigation);
-    //header삭제
+    login(id, password, navigation);
+    
   };
-  const setEmailFunc = (itemInputEmail) => {
-    setEmail(itemInputEmail);
+  const setidFunc = (itemInputid) => {
+    setid(itemInputid);
   };
   const setPasswordFunc = (itemInputPassword) => {
     setPassword(itemInputPassword);
   };
 
+  const goSignUp = () => {
+    navigation.navigate('SignUp');
+  };
 
-  return (
+  return ready ? (
     <Container style={styles.container}>
       <ImageBackground source={bImage} style={styles.backgroundImage}>
         <Content contentContainerStyle={styles.content} scrollEnabled={false}>
+        <Thumbnail large source={Main} style={styles.thumbnail}/>
           <Text style={styles.title}>
             <Text style={styles.highlite}>당근</Text>마켓
           </Text>
           <Form style={styles.form}>
             <ItemInput title={'이메일'} 
-            type={'email'} 
-            setFunc={setEmailFunc}
+            type={'id'} 
+            setFunc={setidFunc}
             error={emailError} 
             />
             <ItemInput title={'비밀번호'} 
@@ -79,6 +102,8 @@ export default function SignIn({ navigation }) {
         </Content>
       </ImageBackground>
     </Container>
+  ): (
+    <Loading />
   );
 }
 
@@ -92,14 +117,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(52, 52, 52, 0.5)',
-    margin: 20,
-    borderRadius: 20,
   },
+  thumbnail: { alignSelf: 'center'},
   title: {
     fontSize: 25,
     fontWeight: '700',
-    color: '#fff',
+    color: '#c5beb6',
     textAlign: 'center',
   },
   highlite: {
@@ -122,27 +145,18 @@ const styles = StyleSheet.create({
   input: {
     color: '#fff',
   },
-  snsSignUp: {
-    alignSelf: 'center',
-    width: 250,
-    marginTop: 10,
-    borderRadius: 10,
-    backgroundColor: '#4667A5',
-  },
   emailSignIn: {
     alignSelf: 'center',
     width: 250,
     marginTop: 5,
     borderRadius: 10,
-    backgroundColor: '#333',
+    backgroundColor: '#FF8A3D',
   },
   emailSignUp: {
     alignSelf: 'center',
     width: 250,
     marginTop: 5,
     borderRadius: 10,
-    backgroundColor: '#eee',
-    borderWidth: 1,
-    borderColor: '#333',
+    backgroundColor: '#ffa266',
   },
 });

@@ -56,13 +56,13 @@ useEffect(() => {
       color={'grey'}
       size={25}
       />
-      {/* <TouchableOpacity style ={styles.pencilSize} onPress={() => navigation.navigate('HomeAddPage')}>
+      <TouchableOpacity style ={styles.pencilSize} onPress={() => navigation.navigate('HomeAddPage')}>
       <Image 
       resizeMode={'contain'}
       style ={styles.pencil}         
          source={require("../assets/Pencil.png")}         
 />
-      </TouchableOpacity> */}
+      </TouchableOpacity>
       <View>
       <ScrollView>
         {categories.map((category, i) =>{
