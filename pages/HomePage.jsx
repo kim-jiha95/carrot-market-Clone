@@ -2,28 +2,21 @@ import React, {useState, useEffect }from 'react';
 import { StyleSheet, ScrollView, View, Text,Image, Dimensions, TouchableOpacity,Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderComponent from '../components/HeaderComponent';
-// import HomeAddPage from './HomeAddPage'
+
 
 import { Container, Tab, Tabs } from 'native-base';
 import HomeComponent from '../components/HomeComponent';
 import data from '../data.json';
 import {getCateData} from '../config/BackData'
-// import { useNavigation} from '@react-navigation/native';
-// const navigation = useNavigation();
-const diviceWidth = Dimensions.get('window').width;
-// import { useRoutes, usePath, A} from 'hookrouter';
 
-// const routes = {
-//   'HomeAddPage/': () => <HomeAddPage/>
-// }
+const diviceWidth = Dimensions.get('window').width;
+
 
 export default function HomePage( {navigation}) {
 console.disableYellowBox = true;
 
 const [categories, setCategories] = useState(data.result);
-// const routeResult = useRoutes(routes);
 
-// return routeResult || <NotFoundPage />;
 
 useEffect(() => {
     download();
@@ -76,12 +69,7 @@ useEffect(() => {
 />
       </TouchableOpacity>
       </ScrollView>  
-      </View>    
-      
-      {/* <Image style ={styles.pencil}         
-         source={require("../assets/Pencil.png")}
-/> */}
-    
+      </View>        
     </Container>
     
   );
