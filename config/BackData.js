@@ -19,7 +19,7 @@ export async function getCateData() {
 }
 
 // addhomepage
-export async function secondhandpost(title, contents, price) {
+export async function secondhandpost(title, contents, price, images) {
 	try {
 		console.log("성공")
 		const token = await AsyncStorage.getItem('session');
@@ -33,10 +33,43 @@ export async function secondhandpost(title, contents, price) {
 				title: title,
 				contents: contents,
 				price: price,
-				images: []
+				images: images
 			},
 		});
 		console.log("성공")
+	} catch (err) {
+		const error = err.response.data.error || err.message;
+
+		Alert.alert(error);
+	}
+}
+
+// addhomepage_pic made by 상균
+export async function Pic(imageData) {
+	result = []
+	try {
+		console.log("성공")
+		let localUri = imageData.uri;
+		let filename = localUri.split('/').pop();
+		console.log(localUri)
+  // Infer the type of the image
+  		let match = /\.(\w+)$/.exec(filename);
+		let type = match ? `image/${match[1]}` : `image`;
+		console.log(imageData)
+		let formData = new FormData();
+		formData.append('images', {uri:localUri, name:filename, type:type })
+		const token = await AsyncStorage.getItem('session');
+		const result = await axios({
+			method: 'post',
+			url: host + '/image',
+			headers: {
+				'Content-type': 'multipart/form-data',
+				authorization: token
+			},
+			data: formData
+		});
+		console.log(result.data)
+		return result.data.images;
 	} catch (err) {
 		const error = err.response.data.error || err.message;
 
