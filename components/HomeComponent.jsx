@@ -14,7 +14,7 @@ export default function HomeComponent({ navigation, category }) {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('DetailPage', category.nickname);
+        navigation.navigate('HomeDetail', category.nickname);
       }}>
       <Grid style={styles.resell}>
         <Col size={1}>
@@ -25,8 +25,12 @@ export default function HomeComponent({ navigation, category }) {
           />
         </Col>
         <Col size={2} style={styles.cardText}>
-          <Text style={styles.sellTitle}>{category.nickname}</Text>
-          <Text style={styles.sellEnTitle}>{category.date}</Text>
+          <Text style={styles.sellTitle}>{category.title}</Text>
+          <Text style={styles.sellArea} resizeMode='cover'>{category.area} </Text>
+          {/* <Text style={styles.sellArea}>{category.area}</Text> */}
+          {/* <Text style={styles.sellArea}>{category.area}</Text> */}
+          <Text style={styles.sellDate}>{category.date}</Text>
+          <Text style={styles.sellPrice}>{category.price}</Text>
         </Col>
       </Grid>
     </TouchableOpacity>
@@ -52,11 +56,25 @@ const styles = StyleSheet.create({
   sellTitle: {
     fontSize: 19,
     fontWeight: '500',
-    marginBottom: 5,
+    marginBottom: 11,
   },
-  sellEnTitle: {
+  sellArea: {
+    fontSize: 13,
+    // color: 'lightgrey',
+    fontWeight: '500',
+    marginBottom: 10,
+  },
+  sellDate: {
+    fontSize: 13,
+    // color: 'lightgrey',
+    fontWeight: '500',
+    marginBottom: 10,
+    marginLeft: 5,
+  },
+  sellPrice: {
     fontSize: 13,
     color: 'lightgrey',
     fontWeight: '500',
+    marginBottom:15,
   },
 });

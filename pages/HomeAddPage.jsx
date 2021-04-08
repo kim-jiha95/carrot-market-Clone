@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Image,Platform, Alert, View, Text } from 'react-native';
+import { StyleSheet, Image,Platform, Alert, View, Text, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
 import { Grid } from 'react-native-easy-grid';
@@ -31,7 +31,7 @@ export default function HomeAddPage({navigation}) {
   const upload = async () => {
     console.log(title, contents, price)
 
-    secondhandpost(title, contents, price);
+    // await secondhandpost(title, contents, price);
   };
 
   const goHomePage = () => {
@@ -150,9 +150,9 @@ export default function HomeAddPage({navigation}) {
             onChangeText={(text) => setContents(text)}
           />
         </Form>
-        <Button full style={styles.uploadButton} onPress={upload()}>
+        <TouchableOpacity full style={styles.uploadButton} onPress={upload()}>
           <Text>등록</Text>
-        </Button>
+        </TouchableOpacity>
       </Content>
         </Container>
     );

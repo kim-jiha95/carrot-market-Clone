@@ -55,14 +55,8 @@ useEffect(() => {
       name={'notifications-outline'}
       color={'grey'}
       size={25}
-      />
-      {/* <TouchableOpacity style ={styles.pencilSize} onPress={() => navigation.navigate('HomeAddPage')}>
-      <Image 
-      resizeMode={'contain'}
-      style ={styles.pencil}         
-         source={require("../assets/Pencil.png")}         
-/>
-      </TouchableOpacity> */}
+            />
+     
       <View>
       <ScrollView>
         {categories.map((category, i) =>{
@@ -93,9 +87,7 @@ useEffect(() => {
   );
 }
 
-const styles = StyleSheet.create({
-  container:{
-  },
+const styles = StyleSheet.create({  
   pencilSize:{    
     width: 50,
     height: 50,   
