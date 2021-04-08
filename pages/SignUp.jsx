@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, ImageBackground } from 'react-native';
+import { StyleSheet, ImageBackground, AsyncStorage, Alert  } from 'react-native';
 import {
   Container,
   Content,
@@ -14,27 +14,31 @@ import {
 } from 'native-base';
 const bImage = require('../assets/background.png');
 import ItemInput from '../components/ItemInput';
-import { registration } from '../config/AxiosFunctions';
+import { register } from '../config/AxiosFunctions';
 
-export default function SignUpPage({navigation}) {
+export default function SignUp({navigation}) {
   
   const [nickName, setNickName] = useState('');
   const [nickNameError, setNickNameError] = useState('');
 
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
+  const [id, setid] = useState('');
+  const [idError, setidError] = useState('');
 
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [passwordConfirmError, setPasswordConfirmError] = useState('');
+  const [confirmPassword, setconfirmPassword] = useState('');
+  const [confirmPasswordError, setconfirmPasswordError] = useState('');
 
-  const doSignUp = () => {
+  const [area, setarea] = useState('');
+  const [areaError, setareaError] = useState('');
+
+  const doSignUp = async () => {
     console.log(nickName);
-    console.log(email);
+    console.log(id);
     console.log(password);
-    console.log(passwordConfirm);
+    console.log(confirmPassword);
+    console.log(area)
     if (nickName == '') {
       setNickNameError('닉네임을 입력해주세요');
       return false;
@@ -42,11 +46,11 @@ export default function SignUpPage({navigation}) {
       setNickNameError('');
     }
 
-    if (email == '') {
-      setEmailError('이메일을 입력해주세요');
+    if (id == '') {
+      setidError('이메일을 입력해주세요');
       return false;
     } else {
-      setEmailError('');
+      setidError('');
     }
 
     if (password == '') {
@@ -56,19 +60,28 @@ export default function SignUpPage({navigation}) {
       setPasswordError('');
     }
 
-    if (passwordConfirm == '') {
-      setPasswordConfirmError('비밀번호 확인을 입력해주세요');
+    if (area == '') {
+      setareaError('지역을 입력해주세요');
       return false;
     } else {
-      setPasswordConfirmError('');
+      setareaError('');
     }
 
-    if(password !== passwordConfirm){
-      setPasswordConfirmError('비밀번호가 서로 일치 하지 않습니다.');
+    if (confirmPassword == '') {
+      setconfirmPasswordError('비밀번호 확인을 입력해주세요');
       return false;
-    }else{
-      setPasswordConfirmError('');
+    } else {
+      setconfirmPasswordError('');
     }
+
+    if (password !== confirmPassword) {
+      setconfirmPasswordError('비밀번호가 서로 일치 하지 않습니다.');
+      return false;
+    } else {
+      setconfirmPasswordError('');
+    }
+  
+    await register(id, password, confirmPassword, nickname,  area, navigation);
   };
 
 
@@ -89,7 +102,7 @@ export default function SignUpPage({navigation}) {
         </Header>
         <Content contentContainerStyle={styles.content} scrollEnabled={false}>
           <Text style={styles.title}>
-            <Text style={styles.highlite}>당근</Text>마켓 signup
+            <Text style={styles.highlite}>당근</Text>마켓 SIGNUP
           </Text>
           <Form style={styles.form}>
             <ItemInput title={'닉네임'}
@@ -99,9 +112,9 @@ export default function SignUpPage({navigation}) {
             />
             <ItemInput title={'이메일'}
             title={'이메일'}
-            type={'email'}
-            error={emailError}
-            setFunc={setEmail}
+            type={'id'}
+            error={idError}
+            setFunc={setid}
             />
             <ItemInput title={'비밀번호'}
             title={'비밀번호'}
@@ -111,9 +124,15 @@ export default function SignUpPage({navigation}) {
             />
             <ItemInput title={'비밀번호 확인'}
             title={'비밀번호 확인'}
-            type={'passwordConfirm'}
-            error={passwordConfirmError}
-            setFunc={setPasswordConfirm}
+            type={'confirmPassword'}
+            error={confirmPasswordError}
+            setFunc={setconfirmPassword}
+            />
+            <ItemInput title={'지역'}
+            title={'지역'}
+            type={'area'}
+            error={areaError}
+            setFunc={setarea}
             />
           </Form>
           <Button full style={styles.emailSignUp} onPress={doSignUp}>
@@ -134,21 +153,18 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(52, 52, 52, 0.5)',
-    margin: 20,
-    borderRadius: 20,
+    justifyContent: 'center'
   },
   title: {
     fontSize: 25,
     fontWeight: '700',
-    color: '#fff',
+    color: '#c5beb6',
     textAlign: 'center',
   },
   highlite: {
     fontSize: 25,
     fontWeight: '700',
-    color: 'deeppink',
+    color: '#FF8A3D',
     textAlign: 'center',
   },
   form: {
@@ -159,19 +175,11 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     marginTop: 10,
   },
-
-  snsSignUp: {
-    alignSelf: 'center',
-    width: 250,
-    marginTop: 10,
-    borderRadius: 10,
-    backgroundColor: '#4667A5',
-  },
   emailSignUp: {
     alignSelf: 'center',
     width: 250,
-    marginTop: 5,
+    marginTop: 40,
     borderRadius: 10,
-    backgroundColor: '#333',
+    backgroundColor: '#FF8A3D',
   },
 });

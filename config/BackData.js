@@ -1,9 +1,10 @@
 import {
-        Alert
-     } from "react-native";
-     import axios from "axios";
-     
-	 const host = 'http://3.34.198.18:20001'
+	Alert,
+	AsyncStorage
+  } from "react-native";
+import axios from "axios";
+
+const host = 'http://3.34.198.18:20001'
 // homepage
 export async function getCateData() {
 	const result = await axios({
@@ -14,35 +15,31 @@ export async function getCateData() {
 		}
 	})
 	console.log(result.data.exchangeBoardData);
-     return result.data.exchangeBoardData
+	return result.data.exchangeBoardData
 }
 
 // addhomepage
 export async function secondhandpost(title, contents, price) {
-	try { 
+	try {
 		console.log("성공")
-	 	const token = await AsyncStorage.getItem('session');
-	  const result = await axios({
+		const token = await AsyncStorage.getItem('session');
+		const result = await axios({
 			method: 'post',
 			url: host + '/exchange',
 			headers: {
-				authorization: 'Bearer '+ token,
+				authorization: token
 			},
 			data: {
 				title: title,
-				contents: contents,		  
+				contents: contents,
 				price: price,
-				images: []		  		  
+				images: []
 			},
-	  }); 
+		});
 		console.log("성공")
 	} catch (err) {
 		const error = err.response.data.error || err.message;
 
-    Alert.alert(error);
+		Alert.alert(error);
 	}
 }
-
-
-	
-

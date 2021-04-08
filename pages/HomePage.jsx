@@ -48,8 +48,7 @@ useEffect(() => {
       name={'notifications-outline'}
       color={'grey'}
       size={25}
-            />
-     
+/>
       <View>
       <ScrollView>
         {categories.map((category, i) =>{
