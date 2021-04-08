@@ -1,3 +1,4 @@
+import React from 'react';
 import { Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -6,7 +7,7 @@ import HoodPage from '../pages/HoodPage';
 import NearmePage from '../pages/NearmePage';
 import ChatPage from '../pages/ChatPage';
 import MyPage from '../pages/MyPage';
-import React from 'react';
+// import React from 'react';
 
 const Tabs = createBottomTabNavigator();
 

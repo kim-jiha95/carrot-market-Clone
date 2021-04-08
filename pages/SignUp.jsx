@@ -81,7 +81,7 @@ export default function SignUp({navigation}) {
       setconfirmPasswordError('');
     }
   
-    await register(id, password, confirmPassword, nickname,  area, navigation);
+    await register(id, password, confirmPassword, nickName,  area, navigation);
   };
 
 
@@ -91,7 +91,7 @@ export default function SignUp({navigation}) {
         <Header transparent>
           <Left>
             <Button transparent 
-							onPress={() => {
+                     onPress={() => {
                 navigation.goBack();
               }}>
               <Icon name="arrow-back" style={{ color: '#fff' }} />

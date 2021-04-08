@@ -2,30 +2,28 @@ import React,  {useState, useEffect }from 'react';
 import { StyleSheet, ScrollView, View, Text, Image, Dimensions, TouchableOpacity,Alert } from 'react-native';
 import HomeDetailComponent from '../components/HomeDetailComponent';
 import {getCateData} from '../config/BackData'
-import data from '../data.json';
 import { Container, Tab, Tabs } from 'native-base';
 
 
 export default function HomeDetail(navigation) {
   console.disableYellowBox = true;
 
-  const [categories, setCategories] = useState(data.result);
+  const [categories, setCategories] = useState(new Array());
 
   useEffect(() => {
     download();
 },[]);
 
   const download = async () => {
-    const result = await getCateData();
-      
+    const result = await getCateData();      
     setCategories(result);
   }
 
   return (
-    <Container       style={styles.container}
+    <Container style={styles.container}
     >
        <View>
-      <ScrollView>
+      {/* <ScrollView> */}
         {categories.map((category, i) =>{
           return (
             <HomeDetailComponent
@@ -35,7 +33,7 @@ export default function HomeDetail(navigation) {
             />
           );
         })}
-          </ScrollView>  
+          {/* </ScrollView>   */}
       </View>
             
     

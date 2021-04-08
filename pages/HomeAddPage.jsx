@@ -150,7 +150,7 @@ export default function HomeAddPage({navigation}) {
             onChangeText={(text) => setContents(text)}
           />
         </Form>
-        <TouchableOpacity full style={styles.uploadButton} onPress={upload()}>
+        <TouchableOpacity full style={styles.uploadButton} onPress={() => upload()}>
           <Text>등록</Text>
         </TouchableOpacity>
       </Content>

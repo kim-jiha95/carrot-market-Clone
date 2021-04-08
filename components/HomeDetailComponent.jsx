@@ -13,7 +13,9 @@ import {Container} from 'native-base';
 const diviceWidth = Dimensions.get('window').width;
 
 export default function HomeDetailComponent({ category }) {
-    return (
+  let image = category.images.length > 0 ? category.images[0] : '';  
+  let pricetag = category.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); 
+  return (
       <Container
         >
         <Grid style={styles.resell}>
@@ -21,7 +23,7 @@ export default function HomeDetailComponent({ category }) {
             <Image
               style={styles.sellImage}
               resizeMode='cover'
-              source={{ uri: category.images[0] }}
+              source={{ uri: image }}
             />
           </Col>
           <View style={styles.border}></View>
@@ -30,15 +32,10 @@ export default function HomeDetailComponent({ category }) {
           {/* <Text style={styles.mynickname} resizeMode='cover'>{category.nickname} </Text> */}
           </Col> 
           <Col size={2} style={styles.cardText}>
-            <Text style={styles.sellTitle}>{category.title}
-             너가 나의 이름을 불러주었을때 꽃이 되었던{'\n'}
-             그 꽃을 싸게 팝니다</Text>
+            <Text style={styles.sellTitle}>{category.title}</Text>
              <Text style={styles.sellDate}>{category.date}</Text>
-            {/* <Text style={styles.sellArea} resizeMode='cover'>{category.area} </Text> */}
-            {/* <Text style={styles.sellArea}>{category.area}</Text> */}
-            {/* <Text style={styles.sellArea}>{category.area}</Text> */}
-            {/* <Text style={styles.sellDate}>{category.date}</Text> */}
-            <Text style={styles.sellPrice}>{category.price}</Text>
+            
+            <Text style={styles.sellPrice}>{pricetag}</Text>
             <Text style={styles.sellContents}>{category.contents}</Text>
           </Col>
         </Grid>
@@ -60,7 +57,7 @@ export default function HomeDetailComponent({ category }) {
     sellImage: {
       height: 500,
       width: 500,      
-    //   borderRadius: 30,
+      borderRadius: 30,
     },
     profile:{
         height: 100,

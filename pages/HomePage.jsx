@@ -6,7 +6,7 @@ import HeaderComponent from '../components/HeaderComponent';
 
 import { Container, Tab, Tabs } from 'native-base';
 import HomeComponent from '../components/HomeComponent';
-import data from '../data.json';
+// import data from '../data.json';
 import {getCateData} from '../config/BackData'
 
 const diviceWidth = Dimensions.get('window').width;
@@ -15,18 +15,19 @@ const diviceWidth = Dimensions.get('window').width;
 export default function HomePage( {navigation}) {
 console.disableYellowBox = true;
 
-const [categories, setCategories] = useState(data.result);
+const [categories, setCategories] = useState(new Array());
 
-
-useEffect(() => {
+  useEffect(() => {
     download();
-},[]);
+  }, []);
 
   const download = async () => {
     const result = await getCateData();
-      
     setCategories(result);
-  }
+  };
+
+
+
 
   return (
     <Container       style={styles.container}
@@ -52,7 +53,7 @@ useEffect(() => {
      
       <View>
       <ScrollView>
-        {categories.map((category, i) =>{
+          {categories.map((category, i) => {
           return (
             <HomeComponent
             category = {category}
@@ -60,17 +61,19 @@ useEffect(() => {
             navigation={navigation}
             />
           );
-        })}
-        <TouchableOpacity style ={styles.pencilSize} onPress={() => navigation.navigate('HomeAddPage')}>          
+        })}        
+      </ScrollView> 
+      <TouchableOpacity style ={styles.pencilSize} onPress={() => navigation.navigate('HomeAddPage')}>          
       <Image 
       resizeMode={'contain'}
       style ={styles.pencil}         
          source={require("../assets/Pencil.png")}         
 />
       </TouchableOpacity>
-      </ScrollView>  
+       
       </View>        
     </Container>
+    
     
   );
 }
@@ -85,8 +88,8 @@ const styles = StyleSheet.create({
   },
 
   pencil:{
-    // position: 'absolute',
-    // marginTop: 650,
+    position: 'absolute',
+    // marginTop: 350,
     // marginLeft: 300,
     width: '100%',
     height: '100%',
@@ -101,8 +104,8 @@ const styles = StyleSheet.create({
     top:45,
     left: 300,
   }, headerIcons3: {
-    position: 'absolute',
-    top:45,
-    left:330,
+     position: 'absolute',
+     top:45,
+     left:330,
   },
 });

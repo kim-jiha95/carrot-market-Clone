@@ -11,26 +11,32 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 const diviceWidth = Dimensions.get('window').width;
 
 export default function HomeComponent({ navigation, category }) {
+  let image = category.images.length > 0 ? category.images[0] : '';
+  let pricetag = category.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');  
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('HomeDetail', category.nickname);
-      }}>
+        navigation.navigate('HomeDetail', category);
+      }}
+    >
       <Grid style={styles.resell}>
         <Col size={1}>
           <Image
             style={styles.sellImage}
-            resizeMode='cover'
-            // source={{ uri: category.images[0] }}
+            resizeMode="cover"
+            source={{ uri: image} }
           />
         </Col>
         <Col size={2} style={styles.cardText}>
           <Text style={styles.sellTitle}>{category.title}</Text>
-          <Text style={styles.sellArea} resizeMode='cover'>{category.area} </Text>
+          <Text style={styles.sellArea} resizeMode="cover">
+            
+          </Text>
           {/* <Text style={styles.sellArea}>{category.area}</Text> */}
-          {/* <Text style={styles.sellArea}>{category.area}</Text> */}
-          <Text style={styles.sellDate}>{category.date}</Text>
-          <Text style={styles.sellPrice}>{category.price}</Text>
+          <Text style={styles.sellArea}>{category.area}, {category.date}</Text>
+          {/* <Text style={styles.sellDate}>{category.date}</Text> */}
+          <Text style={styles.sellPrice}>{pricetag}원</Text>
+          {/* <Text style={styles.sellContents}>{category.contents}</Text> */}
         </Col>
       </Grid>
     </TouchableOpacity>
@@ -46,7 +52,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     flex: 1,
     alignItems: 'center',
-    marginTop: 70,
+    marginTop: 50,
   },
   sellImage: {
     height: 100,
@@ -56,25 +62,26 @@ const styles = StyleSheet.create({
   sellTitle: {
     fontSize: 19,
     fontWeight: '500',
-    marginBottom: 11,
+    // marginBottom?
   },
   sellArea: {
     fontSize: 13,
     // color: 'lightgrey',
     fontWeight: '500',
-    marginBottom: 10,
+    marginBottom: 5,
+    color: 'lightgrey',
   },
   sellDate: {
     fontSize: 13,
-    // color: 'lightgrey',
+    color: 'lightgrey',
     fontWeight: '500',
-    marginBottom: 10,
-    marginLeft: 5,
+    marginBottom: 5,
+    marginLeft: 20,
   },
   sellPrice: {
     fontSize: 13,
-    color: 'lightgrey',
+    // color: 'lightgrey',
     fontWeight: '500',
-    marginBottom:15,
+    marginBottom:5,
   },
 });

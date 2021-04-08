@@ -31,6 +31,7 @@ export default function App() {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
+      {/* <StatusBar backgroundColor="white" style="black" /> */}
     <StackNavigator/>       
    </NavigationContainer>    
   );

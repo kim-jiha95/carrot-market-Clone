@@ -1,10 +1,11 @@
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeAddPage from '../pages/HomeAddPage';
 
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import MyPage from '../pages/MyPage';
-import Home_Detail from '../pages/Home_Detail';
+import HomeDetail from '../pages/HomeDetail';
 
 import TabNavigator from './TabNavigator';
 
@@ -22,7 +23,7 @@ const StackNavigator = () => {
       <Stack.Screen name="TabNavigator" component={TabNavigator} />
       <Stack.Screen name="HomeAddPage" component={HomeAddPage}/>
       <Stack.Screen name="MyPage" component={MyPage} />
-      <Stack.Screen name="Home_Detail" component={Home_Detail} />
+      <Stack.Screen name="HomeDetail" component={HomeDetail} />
     </Stack.Navigator>
   );
 };
