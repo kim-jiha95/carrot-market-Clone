@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 export default function ChatPage() {
   return (
     <View style={styles.container}>
-      <Text>caroot ChatPage!</Text>
+      <Text>Soon, You a</Text>
     </View>
   );
 }
