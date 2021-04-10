@@ -2,38 +2,31 @@ import React, {useState, useEffect }from 'react';
 import { StyleSheet, ScrollView, View, Text,Image, Dimensions, TouchableOpacity,Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderComponent from '../components/HeaderComponent';
-// import HomeAddPage from './HomeAddPage'
+
 
 import { Container, Tab, Tabs } from 'native-base';
 import HomeComponent from '../components/HomeComponent';
-import data from '../data.json';
 import {getCateData} from '../config/BackData'
-// import { useNavigation} from '@react-navigation/native';
-// const navigation = useNavigation();
-const diviceWidth = Dimensions.get('window').width;
-// import { useRoutes, usePath, A} from 'hookrouter';
 
-// const routes = {
-//   'HomeAddPage/': () => <HomeAddPage/>
-// }
+const diviceWidth = Dimensions.get('window').width;
+
 
 export default function HomePage( {navigation}) {
 console.disableYellowBox = true;
 
-const [categories, setCategories] = useState(data.result);
-// const routeResult = useRoutes(routes);
+const [categories, setCategories] = useState(new Array());
 
-// return routeResult || <NotFoundPage />;
-
-useEffect(() => {
+  useEffect(() => {
     download();
-},[]);
+  }, []);
 
   const download = async () => {
     const result = await getCateData();
-      
     setCategories(result);
-  }
+  };
+
+
+
 
   return (
     <Container       style={styles.container}
@@ -55,17 +48,11 @@ useEffect(() => {
       name={'notifications-outline'}
       color={'grey'}
       size={25}
-      />
-      {/* <TouchableOpacity style ={styles.pencilSize} onPress={() => navigation.navigate('HomeAddPage')}>
-      <Image 
-      resizeMode={'contain'}
-      style ={styles.pencil}         
-         source={require("../assets/Pencil.png")}         
-/>
-      </TouchableOpacity> */}
+            />
+     
       <View>
       <ScrollView>
-        {categories.map((category, i) =>{
+          {categories.map((category, i) => {
           return (
             <HomeComponent
             category = {category}
@@ -73,29 +60,24 @@ useEffect(() => {
             navigation={navigation}
             />
           );
-        })}
-        <TouchableOpacity style ={styles.pencilSize} onPress={() => navigation.navigate('HomeAddPage')}>          
+        })}        
+      </ScrollView> 
+      <TouchableOpacity style ={styles.pencilSize} onPress={() => navigation.navigate('HomeAddPage')}>          
       <Image 
       resizeMode={'contain'}
       style ={styles.pencil}         
          source={require("../assets/Pencil.png")}         
 />
       </TouchableOpacity>
-      </ScrollView>  
-      </View>    
-      
-      {/* <Image style ={styles.pencil}         
-         source={require("../assets/Pencil.png")}
-/> */}
-    
+       
+      </View>        
     </Container>
+    
     
   );
 }
 
-const styles = StyleSheet.create({
-  container:{
-  },
+const styles = StyleSheet.create({  
   pencilSize:{    
     width: 50,
     height: 50,   
@@ -105,8 +87,8 @@ const styles = StyleSheet.create({
   },
 
   pencil:{
-    // position: 'absolute',
-    // marginTop: 650,
+    position: 'absolute',
+    // marginTop: 350,
     // marginLeft: 300,
     width: '100%',
     height: '100%',
@@ -121,8 +103,8 @@ const styles = StyleSheet.create({
     top:45,
     left: 300,
   }, headerIcons3: {
-    position: 'absolute',
-    top:45,
-    left:330,
+     position: 'absolute',
+     top:45,
+     left:330,
   },
 });
