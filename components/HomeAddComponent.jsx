@@ -1,14 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-
 export default function HomeAddComponent({ headerTitle }) {
   return (
     <>
-    <Header style={styles.header} transparent>
-      <Button transparent>
-        <Image source={logo} style={styles.logoImage} />
-      </Button>
-    </Header>
+      <Header style={styles.header} transparent>
+        <Button transparent>
+          <Image source={background2} style={styles.logoImage} />
+        </Button>
+      </Header>
       <View style={styles.header}>
         <Text style={styles.headerText}>{headerTitle}</Text>
       </View>
@@ -19,7 +18,7 @@ export default function HomeAddComponent({ headerTitle }) {
 
 const styles = StyleSheet.create({
   header: {
-    paddingTop: 55,
+    paddingTop: 60,
     paddingBottom: 5,
     paddingLeft: 20,
     backgroundColor: 'white',

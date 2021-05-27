@@ -30,7 +30,7 @@ export default function SignIn({ navigation }) {
     });
 
     setTimeout(() => {
-			AsyncStorage.getItem('session', (err, result) => {
+			AsyncStorage.getItem('session', ( result ) => {
       console.log('ASYNCSTORAGE');
       console.log(result);
       if (result) {

@@ -1,120 +1,117 @@
-import React, {useState, useEffect} from 'react';
-import { StyleSheet, Image,Platform, Alert, View, Text, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Platform, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { Ionicons } from '@expo/vector-icons';
 import { Grid } from 'react-native-easy-grid';
+
 import { secondhandpost } from '../config/BackData';
 import {
   Container,
-  Header,
   Content,
-  Left,
-  Icon,
-  Right,
-  Button,
-  Thumbnail,
   Item,
   Input,
   Form,
   Textarea,
+  Button,
 } from 'native-base';
-import HomeAddComponent from '../components/HomeAddComponent';
+
+const loading = require('../assets/loading.gif');
+const tempImage =
+  'https://firebasestorage.googleapis.com/v0/b/sparta-study-plus.appspot.com/o/lecture%2F6-min.png?alt=media&token=bbc87679-4084-40ad-b6cd-01e808983fa4';
 
 
-export default function HomeAddPage({navigation}) {
-
+export default function HomeAddPage({ navigation }) {
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
   const [price, setPrice] = useState('');
+  const [progress, setProgress] = useState(false);
 
-  
+  const [image, setImage] = useState(tempImage);
+  const [imageUri, setImageUri] = useState('');
+
   const upload = async () => {
-    console.log(title, contents, price)
+    console.log(title, contents, price);
+    // console.log('업로드 준비중!');
+    // setProgress(true);
+    // const currentUser = firebase.auth().currentUser;
+    // let date = new Date();
+    // let getTime = date.getTime();
+    // let data = {
+    //   title: title,
+    //   author: currentUser.email,
+    //   desc: content,
+    //   image: image,
+    //   date: getTime,
+    //   uid: currentUser.uid,
+    // };
+    // const response = await fetch(imageUri);
+    // const blob = await response.blob();
+    // const imageUrl = await imageUpload(blob, getTime);
+    // data.image = imageUrl;
+    // let result = await addDiary(data);
+    // if (result) {
+    //   Alert.alert('글이 성공적으로 등록되었습니다!');
+    //   setTitle('');
+    //   setContent('');
+    //   setImage(tempImage);
+    //   setImageUri('');
+    //   setProgress(false);
+    // }else {
+    //   setProgress(false);
+    // }
 
-    // await secondhandpost(title, contents, price);
+    await secondhandpost(title, contents, price, images);
+  };
+
+
+  const pickImage = async () => {
+    console.log('이미지 선택');
+    let imageData = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 4],
+      quality: 1,
+    });
+
+    getImageUrl(imageData);
+  };
+  const getImageUrl = async (imageData) => {
+    setImageUri(imageData.uri);
+  };
+
+
+  useEffect(() => {
+    getPermission();
+  }, []);
+  const getPermission = async () => {
+    if (Platform.OS !== 'web') {
+      const { status } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        alert('업로드하려면 권한이 필요해요');
+      }
+    }
   };
 
   const goHomePage = () => {
     navigation.navigate('HomePage');
   };
 
-  
-  const doHomePageAdd = () => {
-    //Email 로그인 버튼을 누를 때 실행
-    //관리 상태 값 확인
-    // console.log(title);
-    // console.log(contents);
-    // console.log(price);
-  };
-
-  
-  // useEffect(() => {
-  //   const unsubscrbie = navigation.addListener('focus', (e) => {
-  //     console.log('작성페이지 접속중');
-  //   });
-  //   getPermission();
-  //   return unsubscrbie;
-  // }, [navigation]);
-  // const getPermission = async () => {
-  //   if (Platform.OS !== 'web') {
-  //     const {
-  //       status,
-  //     } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-  //     if (status !== 'granted') {
-  //       Alert.alert('게시글을 업로드하려면 사진첩 권한이 필요합니다.');
-  //     }
-  //   }
-  // };
-  // const upload = async () => {
-  //   console.log('업로드 준비중!');
-  //   setProgress(true);
-  // }
-
-  //   const days = ['일', '월', '화', '수', '목', '금', '토'];
-  //   let date = new Date();
-
-  //   let year = date.getFullYear() + '년 ';
-  //   let month = date.getMonth() + 1 + '월 ';
-  //   let date1 = date.getDate() + '일 ';
-  //   let day = days[date.getDay()] + '요일 ';
-  //   let hour = date.getHours() + '시 ';
-  //   let min = date.getMinutes() + '분';
-  //   let time = date.getTime();
-
-  //   let data = {
-  //     key: time,
-  //     title: title,
-  //     desc: content,
-  //     image: image,
-  //     date: year + month + date1 + day + hour + min,
-  //   };
-  //   const response = await fetch(imageURI);
-  //   const blob = await response.blob();
-  //   const imageURL = await imageUpload(blob, time);
-
-  //   data.image = imageURL;
-  //   console.log(data);
-
-  //   let result = await addDiary(data);
-  // }
-
   return (
-    
-      <Container>
-      {/* <View style={styles.container}> */}
-        {/* <HomeAddComponent headerTitle="중고거래 글 쓰기" />  */}
-        <Content>
-        {/* <Ionicons
-          style={styles.headerIcons}
-          name={"settings-outline"}
-          color={"grey"}
-          size={20}
-        /> */}
-        {/* </View> */}
-        <Grid style={styles.imageUpload}>
-          <Ionicons style = {styles.camera} name ={'camera-outline'} color={'grey'} size = {25} ></Ionicons>
-          {/* <Text style={styles.imageUploadPlus}>+</Text> */}
-        </Grid>
+    <Container>
+      {progress == false ? null : (<Image source={loading} style={styles.progress} />)}
+      <Content>
+        {imageUri == '' ? (
+          <Grid style={styles.imageUpload} onPress={() => pickImage()}>
+            <Text style={styles.imageUploadPlus}>+</Text>
+          </Grid>
+        ) : (
+          <Image
+            source={{ uri: imageUri }}
+            style={styles.imagePreview}
+            onPress={() => pickImage()}
+          />
+        )}
+
         <Item regular style={styles.title}>
           <Input
             placeholder="글 제목"
@@ -123,78 +120,57 @@ export default function HomeAddPage({navigation}) {
             onChangeText={(text) => setTitle(text)}
           />
         </Item>
-        <Item regular style={styles.category}>
-          
-          
-          
-          {/* <Input
-            placeholder="카테고리 선택"
-            style={{ fontSize: 13 }}            
-            onChangeText={(text) => setTitle(text)}
-          /> */}
-        </Item>
+
         <Item regular style={styles.category}>
           <Input
-            placeholder="가격 입력(선택사항)" 
-            value={price}                              
+            placeholder="가격 입력(선택사항)"
+            value={price}
             style={{ fontSize: 13 }}
             onChangeText={(text) => setPrice(text)}
           />
         </Item>
         <Form style={styles.contentLayout}>
           <Textarea
-            rowSpan={17}
-            bordered
-            placeholder="동네에 올릴 게시글 내용을 작성해주세요. (가품 및 판매금지 품목은 게시가 제한될 수 있어요.)"
-            style={styles.content}
+            rowSpan={13}
+            value={contents}
+            placeholder="동네에 올릴 게시글 내용을 작성해주세요."
             onChangeText={(text) => setContents(text)}
           />
         </Form>
-        <TouchableOpacity full style={styles.uploadButton} onPress={() => upload()}>
-          <Text>등록</Text>
+        <TouchableOpacity onPress={() => upload()}>
+          <Button full style={styles.uploadButton}>
+            <Text>등록</Text>
+          </Button>
         </TouchableOpacity>
       </Content>
-        </Container>
-    );
+    </Container>
+  );
 }
 
-    // <View style={styles.container}>
-    //   <Text>caroot ChatPage!</Text>
-    // </View>
-  
-
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   imageUpload: {
     borderWidth: 2,
     borderRadius: 10,
     borderColor: 'grey',
     borderStyle: 'dashed',
-    width: '20%',
-    // height: 50,
-    marginTop: 40,
-    // alignSelf: 'center',
-    // alignItems: 'center',
-    // maginLeft: 300,
+    width: '90%',
+    height: 200,
+    marginTop: 20,
+    alignSelf: 'center',
+    alignItems: 'center',
   },
-  camera:{
+  imageUploadPlus: {
     textAlign: 'center',
     width: '100%',
-    fontSize: 40,
+    fontSize: 90,
     fontWeight: '300',
     color: 'grey',
   },
-  // imageUploadPlus: {
-  //   textAlign: 'center',
-  //   width: '100%',
-  //   fontSize: 40,
-  //   fontWeight: '300',
-  //   color: 'grey',
-  // },
   title: {
     width: '90%',
     alignSelf: 'center',
@@ -211,13 +187,26 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
     marginTop: 10,
-    height: 300
+    height: 400,
+    borderWidth: 0.2,
+    borderRadius: 10,
+    borderColor: 'grey',
   },
-  content: { borderRadius: 10, fontSize: 13 },
   uploadButton: {
     width: '90%',
     alignSelf: 'center',
     marginTop: 10,
     backgroundColor: 'pink',
+    borderRadius: 10,
   },
+  progress: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
+    position: 'absolute',
+    top: '50%',
+    alignSelf: 'center',
+    zIndex: 2,
+}
+
 });
